@@ -1,4 +1,4 @@
-//Q: 1
+//Q1:
 const people = [
   { name: "Alice", age: 25, gender: "Female" },
   { name: "Bob", age: 30, gender: "Male" },
@@ -7,15 +7,14 @@ const people = [
   { name: "Evan", age: 35, gender: "Male" },
 ];
 
-const filterOut = () => {
-  const filter = people.filter((male) => male.gender !== "Female");
-  const names = filter.map((singleMale) => singleMale.name);
-  console.log(names);
-};
+const getMaleNames = (people) =>
+  people
+    .filter((person) => person.gender === "Male")
+    .map((person) => person.name);
 
-filterOut();
+console.log(getMaleNames(people));
 
-//Q: 2
+//Q2:
 const books = [
   { title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960 },
   { title: "1984", author: "George Orwell", year: 1949 },
@@ -24,38 +23,20 @@ const books = [
   { title: "The Catcher in the Rye", author: "J.D. Salinger", year: 1951 },
 ];
 
-const getBookTitles = (books) => {
-  return books.map((book) => book.title);
-};
+const extractTitles = (books) => books.map((book) => book.title);
 
-const title = getBookTitles(books);
-console.log(title);
+console.log(extractTitles(books));
 
-//Q:3
-const squareTheNumber = (number) => {
-  return number * number;
-};
-const doubleTheNumber = (number) => {
-  return number * 2;
-};
-const addTheNumber = (number) => {
-  return number + 5;
-};
+//Q3:
+const square = (n) => n * n;
+const double = (n) => n * 2;
+const addFive = (n) => n + 5;
 
-const composeFun = (number) => {
-  const sqrFunRes = squareTheNumber(number);
-  const doubleFunRes = doubleTheNumber(sqrFunRes);
-  return addTheNumber(doubleFunRes);
-};
+const composed = (n) => addFive(double(square(n)));
 
-const squareResult = squareTheNumber(4);
-const doubleResult = doubleTheNumber(4);
-const addResult = addTheNumber(4);
-const composeResult = composeFun(4);
+console.log(composed(4));
 
-console.log(composeResult);
-
-//Q:4
+//Q4:
 const cars = [
   { make: "Toyota", model: "Corolla", year: 2020 },
   { make: "Honda", model: "Civic", year: 2019 },
@@ -64,25 +45,15 @@ const cars = [
   { make: "Chevrolet", model: "Camaro", year: 2018 },
 ];
 
-const sortByYear = (cars) => {
-  return cars.sort((car1, car2) => car1.year - car2.year);
-};
+const sortCarsByYear = (carList) =>
+  [...carList].sort((a, b) => a.year - b.year);
 
-const sortedArray = sortByYear(cars);
-console.log(sortedArray);
+console.log(sortCarsByYear(cars));
 
-//Q:5
+//Q5:
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const calculateFun = (numbers) => {
-  const to = numbers.reduce((a, c) => {
-    if (c % 2 == 0) {
-      return a + c;
-    }
-    return a;
-  }, 0);
+const sumEvenNumbers = (arr) =>
+  arr.reduce((sum, num) => (num % 2 === 0 ? sum + num : sum), 0);
 
-  console.log(to);
-};
-
-const res = calculateFun(numbers);
+console.log(sumEvenNumbers(numbers));
